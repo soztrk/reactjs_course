@@ -4,11 +4,16 @@ import CourseGoalList from './components/CourseGoals/CourseGoalList/CourseGoalLi
 import CourseInput from './components/CourseGoals/CourseInput/CourseInput';
 import './App.css';
 
+import styled from "styled-components"
+import styles from "./components/UI/Button/Checkbox.module.css"
+
 const App = () => {
   const [courseGoals, setCourseGoals] = useState([
     { text: 'Do all exercises!', id: 'g1' },
     { text: 'Finish the course!', id: 'g2' }
   ]);
+
+  const[darkTheme,setDarkTheme] = useState(false)
 
   const addGoalHandler = enteredText => {
     setCourseGoals(prevGoals => {
@@ -35,20 +40,21 @@ const App = () => {
     );
   }
 
+  const GoalForm = styled.section`
+    background-color:${props => props.darkTheme ? '#333' : '#fff'};
+  `
+  const changeThemeHandler = () => {
+    setDarkTheme(!darkTheme)
+  }
+
   return (
-    <div>
-      <section id="goal-form">
+    <div>      
+      <GoalForm id="goal-form" darkTheme={darkTheme}>
+        <input onChange={changeThemeHandler} checked={darkTheme} className={styles["theme-checkbox"]} type="checkbox" />
         <CourseInput onAddGoal={addGoalHandler} />
-      </section>
+      </GoalForm>
       <section id="goals">
         {content}
-        {/* {courseGoals.length > 0 && (
-          <CourseGoalList
-            items={courseGoals}
-            onDeleteItem={deleteItemHandler}
-          />
-        ) // <p style={{ textAlign: 'center' }}>No goals found. Maybe add one?</p>
-        } */}
       </section>
     </div>
   );
