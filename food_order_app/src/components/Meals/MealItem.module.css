@@ -1,0 +1,50 @@
+li.item:not(li:last-child){
+    border-bottom: 1px solid #c4c4c4;
+}
+
+.item{
+    display:flex;
+    justify-content:space-between;
+    align-items: center;
+    padding-bottom: 16px;
+}
+
+.item .info{
+    margin-right:10px;
+}
+
+.item .info h3{
+    font-size: 1.1em;
+    margin:8px 0;
+}
+
+.item .info p{
+    font-size:0.9em;
+    font-style: italic;
+    margin: 6px 0;
+}
+
+.item .info .price{
+    color:#ddb635;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.item .actions{
+    width: 140px;
+    text-align: center;
+}
+
+.item .actions button{
+    font-size: 1em;
+    padding:5px 25px;
+}
+
+.item .actions label{
+    margin-bottom:0;
+    margin-right:10px;
+}
+
+.item .actions input{
+    width:100%;
+}

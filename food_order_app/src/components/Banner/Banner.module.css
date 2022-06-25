@@ -1,0 +1,44 @@
+.banner{
+    height:342px;
+    width:100%;
+    margin:0;
+    padding:0;
+    position: relative;
+}
+.image {
+    width: 100%;
+    height: inherit;
+    z-index: 0;
+    overflow: hidden;
+  }
+  
+  .image img {
+    width: 110%;
+    height: 100%;
+    object-fit: cover;
+    transform: rotateZ(-5deg) translateY(-4rem) translateX(-1rem);
+  }
+
+  .banner_card{
+    position: absolute;
+    width:50%;
+    height:196px;
+    color:#fff;
+    background-color: #666;
+    bottom: 0;
+    margin: 0 25%;
+    border-radius: 14px;
+    padding: 16px;
+    box-shadow: 0 1px 18px 10px rgba(0, 0, 0, 0.25);
+    text-align: center;
+    overflow-y: auto;
+  }
+
+  h2{
+    font-size: 1.8em;
+    margin: 10px;
+  }
+
+  .description{
+    font-size: 1em;
+  }

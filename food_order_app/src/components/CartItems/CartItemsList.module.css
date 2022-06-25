@@ -1,0 +1,18 @@
+.cart_items_list ul{
+    padding-left:0;
+}
+.cart_items_list .total{
+    border-top:2px solid #c4c4c4;
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.cart_items_list .total .total_amount{
+    font-size: 1.25em;
+}
+
+.cart_items_list .total .price{
+    font-size: 1.25em;
+    font-weight: bold;
+}
