@@ -20,7 +20,7 @@
     color:#fff;
   }
 
-.header button{
+.header button.btn{
   cursor: pointer;
   display: inline-block;
   width: 236px;
@@ -35,7 +35,7 @@
   transition:background-color ease 0.2s;
   }
 
-.header button:hover{
+.header button.btn:hover{
   background-color: #8d5b2c;
 }
 

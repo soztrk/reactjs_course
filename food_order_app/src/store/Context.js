@@ -1,5 +1,9 @@
 import React,{useReducer} from "react"
 
+/* 
+Define empty state object is not mandatory
+in case want to aviod redundancy
+*/
 const Context = React.createContext({
     modalVisible: false,
     cartItems:[],
@@ -8,11 +12,6 @@ const Context = React.createContext({
     onDecreaseQuantity: (itemId)=>{}, 
     onModalState : (state)=>{} 
 })
-
-const defaultState = {
-    items: [],
-    modal:false
-  };
 
 const reducer = (state,action) => {
 
@@ -53,7 +52,10 @@ const reducer = (state,action) => {
 
 export const ContextProvider = (props) => {
 
-    const [state,dispatchAction] = useReducer(reducer,defaultState)
+    const [state,dispatchAction] = useReducer(reducer,{
+                                                        items: [],
+                                                        modal:false
+                                                    })
 
     const addToCartHandler = (itemId,quantity) => {
         dispatchAction({type:"ADD_TO_CART",item:{id:itemId,quantity:quantity}})

@@ -1,4 +1,5 @@
 import classes from "./Header.module.css"
+import {useEffect,useState} from "react"
 
 const cart_icon = (<svg
     xmlns='http://www.w3.org/2000/svg'
@@ -10,15 +11,35 @@ const cart_icon = (<svg
 
 const Header = (props) => {
 
+    const [btnHighlighted,setButtonHighlighted] = useState(false)
+
     const showCartHandler = () => {
         props.onShowCart()
     }
+
+    const btnClasses = `${classes.btn} ${btnHighlighted ? classes.bump : ''}` 
+    
+    useEffect(()=>{
+
+        if(props.cartItemsCount <= 0) return
+        
+        setButtonHighlighted(true)
+
+        const timer = setTimeout(()=>{
+            setButtonHighlighted(false)
+        },300)
+
+        return () => {
+            clearTimeout(timer)
+        }
+
+    },[props.cartItemsCount])
 
     return(
         <div className={classes.header}>
             <div className={classes.header_inner}>
                 <h1>{props.title}</h1>
-                <button onClick={showCartHandler}>
+                <button className={btnClasses} onClick={showCartHandler}>
                     <span className={classes.icon}>{cart_icon}</span>
                     <span className={classes.button_title}>{props.cartButtonTitle}</span>
                     <span className={classes.badge}>{props.cartItemsCount}</span>
