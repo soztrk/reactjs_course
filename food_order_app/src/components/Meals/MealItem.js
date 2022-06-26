@@ -2,7 +2,7 @@ import classes from "./MealItem.module.css"
 import Button from "../../parts/Button/Button"
 import Input from "../../parts/Input/Input"
 import { useState,useContext } from "react"
-import CartContext from "../../store/CartContext"
+import Context from "../../store/Context"
 
 const MealItem = (props) => {
 
@@ -14,11 +14,11 @@ const MealItem = (props) => {
     }
 
     const addToCartHandler = () => {
-        cartCtx.onAddToCart(props.id,quantity)
+        ctx.onAddToCart(props.id,quantity)
         setQuantity(1)
     }
 
-    const cartCtx = useContext(CartContext)
+    const ctx = useContext(Context)
 
     return(
         <li className={classes.item}>

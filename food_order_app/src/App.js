@@ -2,11 +2,10 @@ import Header from "./components/Header/Header"
 import Banner from "./components/Banner/Banner"
 import bannerImage from "./assets/meals.jpg"
 import MealsList from "./components/Meals/MealsList"
-import CartContext from "./store/CartContext"
 import { useContext } from "react"
 import Modal from "./components/Modal/Modal"
 import CartItemsList from "./components/CartItems/CartItemsList"
-import AlertContext from "./store/AlertContext"
+import Context from "./store/Context"
 
 const DUMMY_MEALS = [
   {
@@ -37,17 +36,16 @@ const DUMMY_MEALS = [
 
 const App = () => {
 
-  const cartCtx = useContext(CartContext)
-  const alertCtx = useContext(AlertContext)
+  const ctx = useContext(Context)
 
   const showCartHandler = () => {
-    if(cartCtx.cartItems.length > 0){
-      alertCtx.onModalState(true)
+    if(ctx.cartItems.length > 0){
+      ctx.onModalState(true)
     }
   }
 
   const getCartItems = () => {
-    return cartCtx.cartItems.map((val)=>{
+    return ctx.cartItems.map((val)=>{
       for(let meal of DUMMY_MEALS){
         if(meal.id === val.id) return {id:val.id,quantity:val.quantity,name:meal.name,price:meal.price}
       }
@@ -57,7 +55,7 @@ const App = () => {
 
   const countCartItems = () => {
     let count = 0
-    cartCtx.cartItems.forEach((val)=>count += Number(val.quantity))
+    ctx.cartItems.forEach((val)=>count += Number(val.quantity))
     return count
   }
 
@@ -87,8 +85,8 @@ const App = () => {
         <main>
           <MealsList items={DUMMY_MEALS} /> 
         </main>
-        { cartCtx.cartItems.length > 0 && alertCtx.modalVisibile ?
-        <Modal onHideModal={alertCtx.onModalState.bind(false)}>
+        { ctx.cartItems.length > 0 && ctx.modalVisible ?
+        <Modal onHideModal={ctx.onModalState.bind(false)}>
           <CartItemsList items={getCartItems()} />
         </Modal>
         : null }

@@ -2,16 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import "./index.css"
-import { CartContextProvider } from './store/CartContext';
-import { AlertContextProvider } from './store/AlertContext';
+import { ContextProvider } from './store/Context';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-
 root.render(
-    <AlertContextProvider>
-        <CartContextProvider>
+        <ContextProvider>
             <App />
-        </CartContextProvider>
-    </AlertContextProvider>
+        </ContextProvider>
     )

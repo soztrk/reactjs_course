@@ -1,11 +1,11 @@
 import classes from "./CartItem.module.css"
 import Button from "../../parts/Button/Button"
 import { useContext } from "react"
-import CartContext from "../../store/CartContext"
+import Context from "../../store/Context"
 
 const CartItem = (props) => {
 
-    const cartCtx = useContext(CartContext)
+    const ctx = useContext(Context)
 
     return(
         <li className={classes.cart_item}>
@@ -17,8 +17,8 @@ const CartItem = (props) => {
                 </div>
             </div>
             <div className={classes.actions}>
-                <Button onClick={()=>{cartCtx.onChangeQuantity(props.id,true)}}>+</Button>
-                <Button onClick={()=>{cartCtx.onChangeQuantity(props.id,false)}}>-</Button>
+                <Button onClick={()=>{ctx.onChangeQuantity(props.id,false)}}>-</Button>
+                <Button onClick={()=>{ctx.onChangeQuantity(props.id,true)}}>+</Button>
             </div>
         </li>
     )
