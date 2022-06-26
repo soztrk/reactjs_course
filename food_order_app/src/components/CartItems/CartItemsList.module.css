@@ -1,4 +1,6 @@
 .cart_items_list ul{
+    max-height:272px;
+    overflow-y: auto;
     padding-left:0;
 }
 .cart_items_list .total{

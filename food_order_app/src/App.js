@@ -3,9 +3,10 @@ import Banner from "./components/Banner/Banner"
 import bannerImage from "./assets/meals.jpg"
 import MealsList from "./components/Meals/MealsList"
 import CartContext from "./store/CartContext"
-import { useContext,useState } from "react"
+import { useContext } from "react"
 import Modal from "./components/Modal/Modal"
 import CartItemsList from "./components/CartItems/CartItemsList"
+import AlertContext from "./store/AlertContext"
 
 const DUMMY_MEALS = [
   {
@@ -36,15 +37,13 @@ const DUMMY_MEALS = [
 
 const App = () => {
 
-  const [cartVisible,setCartVisibility] = useState(false)
   const cartCtx = useContext(CartContext)
+  const alertCtx = useContext(AlertContext)
 
   const showCartHandler = () => {
-    setCartVisibility(true)
-  }
-
-  const hideCartHandler = () => {
-    setCartVisibility(false)
+    if(cartCtx.cartItems.length > 0){
+      alertCtx.onModalState(true)
+    }
   }
 
   const getCartItems = () => {
@@ -52,7 +51,14 @@ const App = () => {
       for(let meal of DUMMY_MEALS){
         if(meal.id === val.id) return {id:val.id,quantity:val.quantity,name:meal.name,price:meal.price}
       }
+      return null
     });
+  }
+
+  const countCartItems = () => {
+    let count = 0
+    cartCtx.cartItems.forEach((val)=>count += Number(val.quantity))
+    return count
   }
 
   return (
@@ -60,7 +66,7 @@ const App = () => {
       <Header 
         title="React Meals" 
         cartButtonTitle="Your Cart"
-        cartItemsCount={cartCtx.cartItems.length}
+        cartItemsCount={countCartItems()}
         onShowCart={showCartHandler}
       />
       <Banner 
@@ -78,9 +84,11 @@ const App = () => {
             </p>
           </>
         } />
-        <MealsList items={DUMMY_MEALS} /> 
-        { cartCtx.cartItems.length > 0 && cartVisible ?
-        <Modal onHideModal={hideCartHandler}>
+        <main>
+          <MealsList items={DUMMY_MEALS} /> 
+        </main>
+        { cartCtx.cartItems.length > 0 && alertCtx.modalVisibile ?
+        <Modal onHideModal={alertCtx.onModalState.bind(false)}>
           <CartItemsList items={getCartItems()} />
         </Modal>
         : null }

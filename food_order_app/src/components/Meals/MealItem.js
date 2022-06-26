@@ -10,7 +10,7 @@ const MealItem = (props) => {
 
     const changeQuantityHandler = (event) => {
         const quantity = event.target.value
-        setQuantity(quantity)
+        setQuantity(quantity <= 0 ? 1 : quantity)
     }
 
     const addToCartHandler = () => {
