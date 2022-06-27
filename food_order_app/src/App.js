@@ -85,11 +85,9 @@ const App = () => {
         <main>
           <MealsList items={DUMMY_MEALS} /> 
         </main>
-        { ctx.cartItems.length > 0 && ctx.modalVisible ?
-        <Modal onHideModal={ctx.onModalState.bind(false)}>
+        <Modal onHideModal={ctx.onModalState.bind(false)} visible={ctx.cartItems.length > 0 && ctx.modalVisible}>
           <CartItemsList items={getCartItems()} />
         </Modal>
-        : null }
     </>
   );
 }

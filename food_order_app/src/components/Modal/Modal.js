@@ -10,6 +10,7 @@ const OverlayModal = (props) => {
   }
 
   return(
+    props.visible ? 
     <>
       <div className={classes.backdrop} onClick={hideModalHandler} />
       <Card className={classes.modal}>
@@ -22,6 +23,7 @@ const OverlayModal = (props) => {
         </footer>
       </Card>
     </>
+    : null
   )
 }
 

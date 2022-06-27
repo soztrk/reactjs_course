@@ -18,10 +18,12 @@ const Header = (props) => {
     }
 
     const btnClasses = `${classes.btn} ${btnHighlighted ? classes.bump : ''}` 
+
+    const {cartItemsCount} = props
     
     useEffect(()=>{
 
-        if(props.cartItemsCount <= 0) return
+        if(cartItemsCount <= 0) return
         
         setButtonHighlighted(true)
 
@@ -33,7 +35,7 @@ const Header = (props) => {
             clearTimeout(timer)
         }
 
-    },[props.cartItemsCount])
+    },[cartItemsCount])
 
     return(
         <div className={classes.header}>
