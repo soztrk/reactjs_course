@@ -44,7 +44,7 @@ class UserFinder extends Component{
                 </div>
                 <ErrorBoundry>
                     <Users users={this.state.filteredUsers} />
-                </ErrorBoundry>
+               </ErrorBoundry>
             </Fragment>
         )
     }

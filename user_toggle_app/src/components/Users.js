@@ -1,9 +1,9 @@
-import { Component } from 'react';
+import { Component,useState,useEffect } from 'react';
 import User from './User';
 
 import classes from './Users.module.css';
 
-
+/*
 
 class Users extends Component{
 
@@ -16,7 +16,7 @@ class Users extends Component{
 
   componentDidUpdate(){
     if(this.props.users.length === 0){
-      throw new Error("No users found")
+      //throw new Error("No users found")
     }
   }
 
@@ -46,5 +46,39 @@ class Users extends Component{
     );
   }
 }
+*/
+
+const Users = (props) => {
+  const [showUsers, setShowUsers] = useState(true);
+
+  const toggleUsersHandler = () => {
+    setShowUsers((curState) => !curState);
+  };
+
+
+  useEffect(()=>{
+    console.log("use effect")
+    if(props.users.length === 1){
+      throw new Error("No users found")
+    }
+  },[props.users])
+
+  const usersList = (
+    <ul>
+      {props.users.map((user) => (
+        <User key={user.id} name={user.name} />
+      ))}
+    </ul>
+  );
+
+  return (
+    <div className={classes.users}>
+      <button onClick={toggleUsersHandler}>
+        {showUsers ? 'Hide' : 'Show'} Users
+      </button>
+      {showUsers && usersList}
+    </div>
+  );
+};
 
 export default Users;
