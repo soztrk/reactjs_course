@@ -17,7 +17,7 @@ const NewTask = (props) => {
     sendTaskRequest({
       url:'https://react-http-52c30-default-rtdb.europe-west1.firebasedatabase.app/tasks.json',
       method:"POST",
-      body: JSON.stringify(taskText),
+      body: {text:taskText},
       headers: {
         'Content-Type': 'application/json',
       }
