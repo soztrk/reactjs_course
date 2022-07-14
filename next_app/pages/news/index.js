@@ -6,7 +6,7 @@ const NewsPage = () => {
             <h1>The News Page</h1>
             <ul>
                 <li><Link href="/news/nextjs-is-good">Nextjs is good</Link></li>
-                <li>Something else</li>
+                <li><Link href="/">Go Back</Link></li>
             </ul>
         </>
     )
