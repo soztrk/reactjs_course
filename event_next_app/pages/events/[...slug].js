@@ -2,6 +2,7 @@ import {useRouter} from "next/router"
 import { getFilteredEvents } from "../../dummy-data";
 import EventList from "../../components/EventList";
 import ResultsTitle from "../../components/results-title/results-title"
+import AlertBox from "../../components/AlertBox/AlertBox"
 
 export default () => {
 
@@ -10,7 +11,7 @@ export default () => {
     const filterData = router.query.slug;
 
     if(!filterData){
-        return <p className="center">Loading...</p>
+        return <AlertBox>Loading...</AlertBox>
     }
 
     const filteredYear = Number(filterData[0])
@@ -24,12 +25,12 @@ export default () => {
         filteredMonth < 1 ||
         filteredMonth > 5
     ){
-        return <p className="center">Invalid fiter data!</p>
+        return <AlertBox>Invalid fiter data!</AlertBox>
     }
 
     const filteredEvents = getFilteredEvents({year:filteredYear,month:filteredMonth})
 
-    if(filteredEvents.length === 0) return <p className="center">No events found!</p>
+    if(filteredEvents.length === 0) return <AlertBox>No events found!</AlertBox>
 
     const date = new Date(filteredYear,filteredMonth - 1)
 

@@ -2,6 +2,7 @@ import {useRouter} from "next/router"
 import { getAllEvents } from "../../dummy-data"
 import EventList from "../../components/EventList"
 import EventSearch from "../../components/event-detail/EventSearch"
+import AlertBox from "../../components/AlertBox/AlertBox"
 
 export default () => {
 
@@ -12,7 +13,7 @@ export default () => {
         router.push(`/events/${year}/${month}`) 
     }
 
-    if(!events) return <p>No events found!</p>
+    if(!events) return <AlertBox>No events found!</AlertBox>
 
     return(
         <>

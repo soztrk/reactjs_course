@@ -1,5 +1,3 @@
-import Link from "next/link"
-
 import styles from "./EventItem.module.css"
 import Button from "./Button"
 
