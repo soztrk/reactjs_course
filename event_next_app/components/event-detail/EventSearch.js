@@ -30,6 +30,13 @@ const EventSearch = (props) => {
                         <option value="3">Mart</option>
                         <option value="4">Nisan</option>
                         <option value="5">Mayıs</option>
+                        <option value="6">Haziran</option>
+                        <option value="7">Temmuz</option>
+                        <option value="8">Ağustos</option>
+                        <option value="9">Eylül</option>
+                        <option value="10">Ekim</option>
+                        <option value="11">Kasım</option>
+                        <option value="12">Aralık</option>
                     </select>
                 </div>
             </div>

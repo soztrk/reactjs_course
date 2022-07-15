@@ -1,11 +1,22 @@
-import { getFeaturedEvents } from "../dummy-data"
+import { getFeaturedEvents } from "../helpers/apiUtils"
 import EventList from "../components/EventList"
 import AlertBox from "../components/AlertBox/AlertBox"
 
-export default () => {
-  const featuredEvents = getFeaturedEvents()
+export default (props) => {
 
-  if(!featuredEvents) return <AlertBox>No events found!</AlertBox>
+  if(!props.events) return <AlertBox>No events found!</AlertBox>
 
-  return <EventList items={featuredEvents} />
+  return <EventList items={props.events} />
+}
+
+export const getStaticProps = async () => {
+
+  const featuredEvents = await getFeaturedEvents()
+
+  return {
+    props : {
+      events:featuredEvents
+    },
+    revalidate:3600
+  }
 }

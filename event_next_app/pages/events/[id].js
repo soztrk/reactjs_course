@@ -1,18 +1,13 @@
-import {useRouter} from "next/router"
-
-import { getEventById } from "../../dummy-data"
+import { getEventById,getFeaturedEvents } from "../../helpers/apiUtils"
 import EventSummary from "../../components/event-detail/event-summary"
 import EventLogistics from "../../components/event-detail/event-logistics"
 import EventContent from "../../components/event-detail/event-content"
-import AlertBox from "../../components/AlertBox/AlertBox"
 
-export default () => {
+export default (props) => {
 
-    const router = useRouter()
+    const event =  props.event
 
-    const event = getEventById(router.query.id)
-
-    if(!event) return <AlertBox>Event not found!</AlertBox>
+    if(!event) return <p>Loading...</p>
 
     return (
         <>
@@ -28,4 +23,33 @@ export default () => {
             </EventContent>
         </>
     )
+}
+
+export const getStaticProps = async (context) => {
+    const eventId = context.params.id
+    const eventById = await getEventById(eventId) || null
+
+    if(eventById === null) return {notFound:true}
+
+    return{
+        props:{
+            event:eventById
+        },
+        revalidate:60
+    }
+}
+
+export const getStaticPaths = async (context) => {
+
+    const featuredEvents = await getFeaturedEvents()
+    const eventPaths = []
+
+    for(const event of featuredEvents){
+        eventPaths.push({params:{id:event.id}})
+    }
+
+    return{
+        paths:eventPaths,
+        fallback:true
+    }
 }
