@@ -1,9 +1,9 @@
 import {useEffect,useState} from "react"
 import {useRouter} from "next/router"
 import { getFilteredEvents } from "../../helpers/apiUtils";
-import EventList from "../../components/EventList";
+import EventList from "../../components/events/EventList";
 import ResultsTitle from "../../components/results-title/results-title"
-import AlertBox from "../../components/AlertBox/AlertBox"
+import AlertBox from "../../ui/AlertBox/AlertBox"
 import Head from "next/head"
 
 // Client Side Data Fetching

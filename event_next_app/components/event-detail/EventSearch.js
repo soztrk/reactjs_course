@@ -1,6 +1,6 @@
 import {useRef} from "react"
 import styles from "./EventSearch.module.css"
-import Button from "../Button"
+import Button from "../../ui/Button/Button"
 
 const EventSearch = (props) => {
     

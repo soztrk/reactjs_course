@@ -1,11 +1,11 @@
 import Image from "next/image"
 
 import styles from "./EventItem.module.css"
-import Button from "./Button"
+import Button from "../../ui/Button/Button"
 
-import DateIcon from "../icons/date-icon"
-import AddressIcon from "../icons/address-icon"
-import ArrowRightIcon from "../icons/arrow-right-icon"
+import DateIcon from "../../ui/Icons/date-icon"
+import AddressIcon from "../../ui/Icons/address-icon"
+import ArrowRightIcon from "../../ui/Icons/arrow-right-icon"
 
 const EventItem = (props) => {
 

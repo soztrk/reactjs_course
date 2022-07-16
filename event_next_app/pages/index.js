@@ -1,8 +1,6 @@
-import Head from "next/head"
-
 import { getFeaturedEvents } from "../helpers/apiUtils"
-import EventList from "../components/EventList"
-import AlertBox from "../components/AlertBox/AlertBox"
+import EventList from "../components/events/EventList"
+import AlertBox from "../ui/AlertBox/AlertBox"
 
 export default function HomePage(props){
 

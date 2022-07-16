@@ -1,8 +1,8 @@
 import {useRouter} from "next/router"
 import { getAllEvents } from "../../helpers/apiUtils"
-import EventList from "../../components/EventList"
+import EventList from "../../components/events/EventList"
 import EventSearch from "../../components/event-detail/EventSearch"
-import AlertBox from "../../components/AlertBox/AlertBox"
+import AlertBox from "../../ui/AlertBox/AlertBox"
 
 export default function EventsPage(props){
 
