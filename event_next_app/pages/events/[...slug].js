@@ -7,7 +7,7 @@ import AlertBox from "../../components/AlertBox/AlertBox"
 import Head from "next/head"
 
 // Client Side Data Fetching
-export default () => {
+export default function EventFilterPage(){
     const router = useRouter()
     const [loadedEvents,setLoadedEvents] = useState()
 

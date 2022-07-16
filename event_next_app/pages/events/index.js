@@ -4,7 +4,7 @@ import EventList from "../../components/EventList"
 import EventSearch from "../../components/event-detail/EventSearch"
 import AlertBox from "../../components/AlertBox/AlertBox"
 
-export default (props) => {
+export default function EventsPage(props){
 
     const router = useRouter()
     const events = props.events

@@ -4,7 +4,7 @@ import { getFeaturedEvents } from "../helpers/apiUtils"
 import EventList from "../components/EventList"
 import AlertBox from "../components/AlertBox/AlertBox"
 
-export default (props) => {
+export default function HomePage(props){
 
   if(!props.events) return <AlertBox>No events found!</AlertBox>
 

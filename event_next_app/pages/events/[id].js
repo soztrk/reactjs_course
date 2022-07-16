@@ -4,7 +4,7 @@ import EventLogistics from "../../components/event-detail/event-logistics"
 import EventContent from "../../components/event-detail/event-content"
 import Head from "next/head"
 
-export default (props) => {
+export default function EventDetailPage(props){
 
     const event =  props.event
 
