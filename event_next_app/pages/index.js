@@ -1,3 +1,5 @@
+import Head from "next/head"
+
 import { getFeaturedEvents } from "../helpers/apiUtils"
 import EventList from "../components/EventList"
 import AlertBox from "../components/AlertBox/AlertBox"

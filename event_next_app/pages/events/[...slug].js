@@ -4,15 +4,21 @@ import { getFilteredEvents } from "../../helpers/apiUtils";
 import EventList from "../../components/EventList";
 import ResultsTitle from "../../components/results-title/results-title"
 import AlertBox from "../../components/AlertBox/AlertBox"
+import Head from "next/head"
 
 // Client Side Data Fetching
-export default (props) => {
+export default () => {
     const router = useRouter()
     const [loadedEvents,setLoadedEvents] = useState()
 
     const filterData = router.query.slug
+    let filteredYear = null
+    let filteredMonth = null
+    let filteredEvents = null
+    let date = null
 
-    // const {data,error} = useSWR()
+    let loading = null
+    let error = null
 
     useEffect(()=>{
 
@@ -38,35 +44,51 @@ export default (props) => {
 
     },[filterData])
 
-    if(!loadedEvents) return <p className="center">Loading...</p>
-
-    const filteredYear = Number(filterData[0])
-    const filteredMonth = Number(filterData[1])
-
-    if(
-        isNaN(filteredYear) ||
-        isNaN(filteredMonth) ||
-        filteredYear > 2022 ||
-        filteredYear < 2021 ||
-        filteredMonth < 1 ||
-        filteredMonth > 12
-    ){
-        return <AlertBox>Invalid filter !</AlertBox>
+    if(!loadedEvents) {
+        loading = <p className="center">Loading...</p>
     }
+    else {
 
-    const filteredEvents = loadedEvents.filter((event) => {
-        const eventDate = new Date(event.date);
-        return eventDate.getFullYear() === filteredYear && eventDate.getMonth() === filteredMonth - 1;
-    })
+        filteredYear = Number(filterData[0])
+        filteredMonth = Number(filterData[1])
 
-    if(!filteredEvents && filteredEvents.length === 0) return <AlertBox>No events found for the chosen filter!</AlertBox>
+        if(
+            isNaN(filteredYear) ||
+            isNaN(filteredMonth) ||
+            filteredYear > 2022 ||
+            filteredYear < 2021 ||
+            filteredMonth < 1 ||
+            filteredMonth > 12
+        ){
+            error = !error ? <AlertBox>Invalid filter !</AlertBox> : error
+        }
 
-    const date = new Date(filteredYear,filteredMonth - 1)
+        filteredEvents = loadedEvents.filter((event) => {
+            const eventDate = new Date(event.date);
+            return eventDate.getFullYear() === filteredYear && eventDate.getMonth() === filteredMonth - 1;
+        })
+
+        if(!filteredEvents || filteredEvents.length === 0) error = !error ? <AlertBox>No events found for the chosen filter!</AlertBox> : error
+        date = new Date(filteredYear,filteredMonth - 1)
+    }
 
     return (
         <>
-            <ResultsTitle date={date} />
-            <EventList items={filteredEvents} />
+            <Head>
+                <title>Filtered Events</title>
+                <meta name="description" content={`All events for ${filteredMonth}/${filteredYear}`} />
+            </Head>
+            {!loading && !error ? 
+            <>
+                <ResultsTitle date={date} />
+                <EventList items={filteredEvents} />
+            </>
+            :
+            <>
+                {loading}
+                {error}
+            </>
+            }
         </>
         
     )
