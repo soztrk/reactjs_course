@@ -1,12 +1,19 @@
 import { getFeaturedEvents } from "../helpers/apiUtils"
 import EventList from "../components/events/EventList"
 import AlertBox from "../ui/AlertBox/AlertBox"
+import NewsletterRegistration from "../forms/newsletter-registration"
 
 export default function HomePage(props){
 
   if(!props.events) return <AlertBox>No events found!</AlertBox>
 
-  return <EventList items={props.events} />
+  return (
+    <>
+      <NewsletterRegistration />
+      <EventList items={props.events} />
+    </>
+  
+  )
 }
 
 export const getStaticProps = async () => {
