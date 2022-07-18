@@ -1,5 +1,3 @@
-import {MongoClient} from "mongodb"
-
 import Validate from "../../helpers/inputValidator"
 import { connectDatabase,insertDocument } from "../../helpers/dbUtils"
 

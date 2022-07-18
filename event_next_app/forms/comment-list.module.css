@@ -22,3 +22,21 @@
 .comments address {
   display: inline;
 }
+
+.loading {
+  display: inline-block;
+  color: #814081;
+  font-size: 1.3rem;
+  border-radius: 8px;
+  padding: 20px;
+  animation: blink 0.5s linear 0.1s infinite alternate;
+}
+
+@keyframes blink{
+  from{
+    opacity: 0;
+  }
+  to{
+    opacity: 1;
+  }
+}

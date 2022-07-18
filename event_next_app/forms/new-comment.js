@@ -1,5 +1,6 @@
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState, useEffect, useContext } from 'react';
 import classes from './new-comment.module.css';
+import Validate from "../helpers/inputValidator"
 
 function NewComment(props) {
   const [isInvalid, setIsInvalid] = useState(false);
@@ -15,7 +16,7 @@ function NewComment(props) {
     const enteredEmail = emailInputRef.current.value;
     const enteredName = nameInputRef.current.value;
     const enteredComment = commentInputRef.current.value;
-
+    /*
     if (
       !enteredEmail ||
       enteredEmail.trim() === '' ||
@@ -24,7 +25,11 @@ function NewComment(props) {
       enteredName.trim() === '' ||
       !enteredComment ||
       enteredComment.trim() === ''
-    ) {
+    )
+    */
+
+    if(!Validate.email(enteredEmail) || !Validate.required(enteredName) || !Validate.required(enteredComment))
+    {
       setIsInvalid(true);
       return;
     }

@@ -2,6 +2,8 @@ import classes from './comment-list.module.css';
 
 function CommentList(props) {
 
+  if(props.loading) return <p className={classes.loading}>Loading...</p>
+
   return (
     <ul className={classes.comments}>
       {props.items.map(val=>(
